@@ -8,16 +8,16 @@
     "build": "electron-packager . Briev --all --asar --icon icon.ico && cp icon.icns Briev-darwin-x64/Briev.app/Contents/Resources/electron.icns",
     "build-mac": "electron-packager . Briev --platform=darwin --arch=x64 --asar --icon icon.ico && cp icon.icns Briev-darwin-x64/Briev.app/Contents/Resources/electron.icns",
     "build-win": "electron-packager . Briev --platform=win32 --arch=ia32 --asar --icon icon.ico",
-	"rebuild": "npm rebuild --runtime=electron --target=1.7.6 --disturl=https://atom.io/download/atom-shell --abi=51"
+    "rebuild": "npm rebuild --runtime=electron --target=1.8.2-beta5 --disturl=https://atom.io/download/atom-shell --abi=51"
   },
   "author": "Robert McMahan",
   "dependencies": {
-    "file-saver": "1.3.3",
+    "file-saver": "1.3.8",
     "lodash": "^4.17.4",
-    "robotjs": "^0.4.7"
+    "robotjs": "^0.5.1"
   },
   "devDependencies": {
-    "electron": "1.7.6",
-    "electron-packager": "^9.1.0"
+    "electron": "1.8.4",
+    "electron-packager": "^12.0.1"
   }
 }
