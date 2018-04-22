@@ -1,0 +1,19 @@
+{{ include('head') }}
+
+<color>
+    <inputs>
+        <label>hex</label><input type='text' id='hex' placeholder='Hex' value='#FFFFFF'>
+        <label>rgb</label><input type='text' id='rgb' placeholder='RGB' value='rgba(255, 255, 255, 1)'>
+        <label>hsl</label><input type='text' id='hsl' placeholder='HSL' value='hsla(0, 0%, 100%, 1)'>
+    </inputs>
+    <example></example>
+    <hues>:| for (i = 0; i < 360; i++) { |:<hue></hue>:| } |:</hues>
+    <saturations>:| for (i = 0; i < 100; i++) { |:<saturation></saturation>:| } |:</saturations>
+    <luminances>:| for (i = 0; i < 100; i++) { |:<luminance></luminance>:| } |:</luminances>
+</color>
+
+<menu>
+    <option id='back' class='waiting' draggable='false' link='index'></option>
+</menu>
+
+{{ include('foot') }}

@@ -1,0 +1,686 @@
+html, body, view {
+    background-color: hsla(0, 0%, 20%, 1);
+    margin: 0px;
+    overflow: hidden;
+    font-size: 12px;
+    height: 100%;
+    width: 100%;
+}
+
+view.win32 {
+    -webkit-text-stroke: 0.5px;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    position: fixed;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 40%, 0.8) !important;
+    border-radius: 7px;
+    width: 10px;
+}
+
+::selection {
+    background-color: hsla(0, 0%, 70%, 1);
+}
+
+/* nav - window options (minimize/close) */
+
+nav {
+    grid-area: nav;
+    background-color: hsla(0, 0%, 30%, 1);
+    -webkit-app-region: drag;
+}
+
+view.win32 nav {
+	display: none;
+}
+
+/* menu - additional options */
+
+menu {
+    grid-area: menu;
+    display: block;
+    margin: 0px;
+    padding: 0px 0px 0px 22px;
+}
+
+menu option {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
+menu option:hover,
+menu option.active {
+    opacity: 1;
+    cursor: pointer;
+}
+
+menu #back {
+    background: url('../img/back.png') no-repeat;
+    background-size: contain;
+    height: 20px;
+    width: 20px;
+}
+
+menu #top {
+    background: url('../img/back.png') no-repeat;
+    background-size: contain;
+    height: 20px;
+    width: 20px;
+    -webkit-transform: rotate(90deg);
+    float: right;
+}
+
+menu #color {
+    background: url('../img/color.png') no-repeat;
+    background-size: contain;
+}
+
+menu #storage {
+    background: url('../img/storage.png') no-repeat;
+    background-size: contain;
+}
+
+menu #cron {
+    background: url('../img/cron.png') no-repeat;
+    background-size: contain;
+    margin-left: -4px;
+}
+
+menu #entities {
+    background: url('../img/entities.png') no-repeat;
+    background-size: contain;
+    margin-left: -3px;
+}
+
+menu #automate {
+    background: url('../img/mouse.png') no-repeat;
+    background-size: contain;
+    margin-left: -6px;
+}
+
+menu #save {
+    display: none;
+    background: url('../img/save.png') no-repeat;
+    background-size: contain;
+    height: 20px;
+    width: 20px;
+    float: right;
+}
+
+menu #add {
+    background: url('../img/add.png') no-repeat;
+    background-size: contain;
+    height: 20px;
+    width: 40px;
+    float: right;
+}
+
+menu #delete {
+    background: url('../img/trash.png') no-repeat;
+    background-size: contain;
+    height: 22px;
+    width: 22px;
+    float: right;
+}
+
+menu #one {
+    background: url('../img/one.png') no-repeat;
+    background-size: contain;
+    height: 24px;
+    width: 24px;
+    float: right;
+}
+
+menu #two {
+    background: url('../img/two.png') no-repeat;
+    background-size: contain;
+    height: 24px;
+    width: 24px;
+    float: right;
+}
+
+menu #all {
+    background: url('../img/all.png') no-repeat;
+    background-size: contain;
+    height: 24px;
+    width: 24px;
+    float: right;
+}
+
+/* core - main options */
+
+view#index {
+    display: grid;
+    grid-template-columns: 10px 1fr 10px;
+    grid-template-rows: 22px 1fr 2fr 1fr 60px;
+    grid-template-areas:
+    'nav nav nav'
+    '. . .'
+    '. main .'
+    '. . .'
+    '. menu .';
+}
+
+index {
+    display: block;
+    grid-area: main;
+    margin: 0 auto;
+}
+
+#paste,
+#clip {
+    display: inline-block;
+    margin: 25px;
+    width: 125px;
+    height: 125px;
+    background: url('../img/paste.png') no-repeat;
+    background-size: contain;
+    -webkit-user-select: none;
+}
+
+#paste {
+    margin-left: 35px;
+}
+
+#clip {
+    background: url('../img/clipboard-empty.png') no-repeat;
+    background-size: contain;
+    position: relative;
+    top: 3px;
+    -webkit-transition-duration: 0.4s;
+}
+
+#paste.saved {
+    background: url('../img/file.png') no-repeat;
+    background-size: contain;
+    position: relative;
+    top: 5px;
+    left: 7px;
+}
+
+#clip.copied {
+    background: url('../img/clipboard.png') no-repeat;
+    background-size: contain;
+}
+
+#paste:hover,
+#clip.copied:hover {
+    cursor: pointer;
+}
+
+/* color - conversion/selection tools */
+
+view#color {
+	display: grid;
+    grid-template-columns: 20px 1fr 20px;
+}
+
+view#color.darwin {
+    grid-template-rows: 22px 20px 2fr 1fr 60px;
+    grid-template-areas:
+    'nav nav nav'
+    '. . .'
+    '. main .'
+    '. . .'
+    '. menu .';
+}
+
+view#color.win32 {
+    grid-template-rows: 20px 2fr 1fr 60px;
+    grid-template-areas:
+    '. . .'
+    '. main .'
+    '. . .'
+    '. menu .';
+}
+
+color {
+    grid-area: main;
+    display: block;
+}
+
+color inputs {
+    display: inline-block;
+    vertical-align: top;
+    width: 68%;
+}
+
+color inputs label {
+    display: inline-block;
+    padding-right: 10px;
+    color: hsla(0, 0%, 100%, 1);
+    font-weight: 700;
+    font-family: Meslo;
+}
+
+color inputs input {
+    display: inline-block;
+    width: calc(100% - 60px);
+    background: -webkit-linear-gradient(hsla(0, 0%, 14%, 1), hsla(0, 0%, 17%, 1));
+    color: hsla(0, 0%, 100%, 1);
+    margin-top: 0px;
+    font-family: Meslo;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid hsla(0, 0%, 24%, 1);
+    border-top: 1px solid hsla(0, 0%, 24%, 1);
+    padding: 10px 7px;
+    margin: 1px;
+    font-size: 0.95em;
+}
+
+color example {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 1px;
+    width: 30%;
+    height: 110px;
+    background-color: hsla(0, 0%, 100%, 1);
+    border-bottom: 1px solid hsla(0, 0%, 24%, 1);
+    border-top: 1px solid hsla(0, 0%, 24%, 1);
+}
+
+color hues,
+color saturations,
+color luminances {
+    display: block;
+    width: calc(100% - 5px);
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    overflow: hidden;
+    border-bottom: 1px solid hsla(0, 0%, 24%, 1);
+    border-top: 1px solid hsla(0, 0%, 24%, 1);
+}
+
+color hues {
+    margin-top: 30px;
+}
+
+color hue,
+color saturation,
+color luminance {
+    display: inline-block;
+    width: 1%;
+    height: 35px;
+    background-color: hsla(0, 0%, 100%, 1);
+    margin: 0px;
+    padding: 0px;
+    cursor: crosshair;
+}
+
+color hue {
+    width: 0.2817%;
+}
+
+view#color menu #back {
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+/* storage - clipboard history */
+/* cron - auto task runner */
+/* entities - character entities reference list */
+
+view#storage,
+view#cron,
+view#entities,
+view#automate {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+view#storage.darwin,
+view#cron.darwin,
+view#entities.darwin,
+view#automate.darwin {
+    grid-template-rows: 22px calc(100% - 100px) 60px;
+    grid-template-areas:
+    'nav'
+    'main'
+    'menu';
+}
+
+view#storage.win32,
+view#cron.win32,
+view#entities.win32,
+view#automate.win32 {
+    grid-template-rows: calc(100% - 78px) 60px;
+    grid-template-areas:
+    'main'
+    'menu';
+}
+
+cron,
+storage,
+entities,
+automate {
+    grid-area: main;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+cron label,
+storage label,
+entities label,
+automate label {
+    display: block;
+    width: calc(100% - 32px);
+    background: -webkit-linear-gradient(hsla(0, 0%, 14%, 1), hsla(0, 0%, 17%, 1));
+    color: hsla(0, 0%, 100%, 1);
+    margin: 0px;
+    font-size: 1.1em;
+    font-family: Meslo;
+    font-weight: 700;
+    padding: 20px;
+    position: relative;
+}
+
+cron label icon,
+storage label icon,
+entities label icon,
+automate label icon {
+    display: inline-block;
+    background: url('../img/storage.png') no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 27px;
+    top: 13px;
+}
+
+cron label icon {
+    background: url('../img/cron.png') no-repeat;
+    background-size: contain;
+}
+
+entities label icon {
+    background: url('../img/entities.png') no-repeat;
+    background-size: contain;
+}
+
+automate label icon {
+    background: url('../img/mouse.png') no-repeat;
+    background-size: contain;
+}
+
+cron hr,
+storage hr,
+entities hr,
+automate hr {
+    border-top: none;
+}
+
+cron list,
+storage list,
+entities list,
+automate list {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+cron input,
+storage input,
+entities input,
+automate input,
+cron list item,
+storage list item,
+entities list item,
+automate list item {
+    display: block;
+    width: calc(100% - 32px);
+    background: -webkit-linear-gradient(hsla(0, 0%, 14%, 1), hsla(0, 0%, 17%, 1));
+    color: hsla(0, 0%, 100%, 1);
+    margin: 0px;
+    font-family: Meslo;
+    padding: 20px;
+    cursor: pointer;
+}
+
+cron list item,
+storage list item,
+automate list item {
+    position: relative;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+storage list item img {
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    border: 1px solid hsla(0, 0%, 100%, 1);
+    border-radius: 2px;
+}
+
+storage list item imgdata {
+    display: inline-block;
+    width: 70%;
+    word-wrap: break-word;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+cron list item,
+automate list item {
+    padding: 27px 20px;
+}
+
+cron list item name,
+automate list item name {
+    display: block;
+    position: relative;
+    top: -8px;
+}
+
+cron list item run,
+automate list item run {
+    display: block;
+    position: absolute;
+    font-size: 0.8em;
+    left: 20px;
+    bottom: 18px;
+    color: hsla(0, 0%, 70%, 1);
+}
+
+entities list item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 35px 30px 15px;
+    grid-template-areas:
+    'example'
+    'desc'
+    'htmls'
+    'htmlh'
+    'htmld'
+    'js'
+    'css';
+    cursor: default;
+}
+
+entities list item column:nth-child(1) { grid-area: example; font-size: 2em; }
+entities list item column:nth-child(3) { grid-area: htmls; }
+entities list item column:nth-child(4) { grid-area: htmlh; }
+entities list item column:nth-child(5) { grid-area: htmld; }
+entities list item column:nth-child(6) { grid-area: js; }
+entities list item column:nth-child(7) { grid-area: css; }
+entities list item desc { grid-area: desc; font-size: 1.1em; }
+
+cron input,
+storage input,
+entities input,
+automate input {
+    padding: 10px 20px;
+    outline: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1em;
+    font-weight: 400;
+    color: hsla(194, 100%, 50%, 1);
+    cursor: text;
+    border-bottom: 1px solid hsla(194, 100%, 50%, 1);
+    border-top: 1px solid hsla(0, 0%, 100%, 1);
+}
+
+cron input::-webkit-input-placeholder,
+storage input::-webkit-input-placeholder,
+entities input::-webkit-input-placeholder,
+automate input::-webkit-input-placeholder {
+    color: hsla(194, 100%, 50%, 1);
+}
+
+cron edit,
+storage edit,
+automate edit {
+    position: fixed;
+    left: 0;
+    width: calc(100% - 40px);
+    padding: 20px;
+    display: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    background-color: hsla(0, 0%, 14%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    font-family: Meslo;
+    white-space: pre-wrap;
+    line-height: 1.4em;
+}
+
+view.darwin cron edit,
+view.darwin storage edit,
+view.darwin automate edit {
+	top: 22px;
+    height: calc(100% - 140px);
+}
+
+view.win32 cron edit,
+view.win32 storage edit,
+view.win32 automate edit {
+	top: 0px;
+	height: calc(100% - 118px);
+}
+
+storage edit,
+automate edit {
+    outline: none;
+}
+
+automate edit {
+    grid-template-rows: 40px 1fr;
+    grid-template-areas:
+    'name'
+    'actions';
+}
+
+cron edit key {
+    color: hsla(0, 0%, 100%, 1);
+    font-weight: 600;
+}
+
+cron edit value {
+    color: hsla(194, 100%, 50%, 1);
+    outline: none;
+}
+
+cron edit array {
+    outline: none;
+}
+
+cron edit key::selection,
+cron edit value::selection,
+cron edit array::selection {
+    background-color: hsla(0, 0%, 60%, 1);
+}
+
+automate edit name,
+automate edit actions {
+    display: block;
+    outline: none;
+}
+
+automate edit name {
+    grid-area: name;
+    font-size: 1.2em;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 1);
+    padding: 10px 15px 20px 0px;
+    width: calc(100% - 15px);
+}
+
+automate edit actions {
+    grid-area: actions;
+    width: calc(100% - 30px);
+    padding: 15px;
+}
+
+automate edit mousepos {
+    display: block;
+    position: fixed;
+    top: 40px;
+    right: 15px;
+    color: hsla(0, 0%, 100%, 1);
+    background-color: hsla(0, 0%, 14%, 1);
+    border-radius: 4px;
+    padding: 0px 10px;
+    font-family: Meslo;
+}
+
+automate edit mousepos x,
+automate edit mousepos y {
+    display: inline-block;
+}
+
+automate edit mousepos x {
+    margin-right: 10px;
+}
+
+view#storage menu #back,
+view#cron menu #back,
+view#entities menu #back,
+view#automate menu #back {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+view#storage menu #delete {
+    margin-top: 27px;
+    margin-right: 35px;
+}
+
+view#storage menu #one,
+view#storage menu #two,
+view#storage menu #all {
+    margin-top: 27px;
+    margin-right: 10px;
+}
+
+view#storage menu #two {
+    margin-right: 40px;
+}
+
+view#cron menu #add,
+view#cron menu #save,
+view#storage menu #save,
+view#entities menu #top,
+view#automate menu #add,
+view#automate menu #save {
+    margin-top: 30px;
+    margin-right: 40px;
+}

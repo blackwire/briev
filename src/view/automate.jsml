@@ -1,0 +1,20 @@
+{{ include('head') }}
+
+<automate>
+    <label>Automation Scripts<icon></icon></label>
+    <input placeholder='Find...'>
+    <list></list>
+    <edit>
+        <name contenteditable='true'></name>
+        <actions contenteditable='true'></actions>
+        <mousepos></mousepos>
+    </edit>
+</automate>
+
+<menu>
+    <option id='back' draggable='false' link='index'></option>
+    <option id='add' draggable='false'></option>
+    <option id='save' draggable='false'></option>
+</menu>
+
+{{ include('foot') }}

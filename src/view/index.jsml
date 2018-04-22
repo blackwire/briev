@@ -1,0 +1,16 @@
+{{ include('head') }}
+
+<index>
+    <div id='paste' class='waiting' draggable='false'></div>
+    <div id='clip' class='waiting' draggable='false'></div>
+</index>
+
+<menu>
+    <option id='color' class='waiting' draggable='false' link='color'></option>
+    <option id='storage' class='waiting' draggable='false' link='storage'></option>
+    <option id='cron' class='waiting' draggable='false' link='cron'></option>
+    <option id='entities' class='waiting' draggable='false' link='entities'></option>
+    <option id='automate' class='waiting' draggable='false' link='automate'></option>
+</menu>
+
+{{ include('foot') }}

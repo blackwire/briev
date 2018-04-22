@@ -1,0 +1,14 @@
+{{ include('head') }}
+
+<entities>
+    <label>Character Entities<icon></icon></label>
+    <input placeholder='Find...'>
+    <list></list>
+</entities>
+
+<menu>
+    <option id='back' draggable='false' link='index'></option>
+    <option id='top' draggable='false'></option>
+</menu>
+
+{{ include('foot') }}

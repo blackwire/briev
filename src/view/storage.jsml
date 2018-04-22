@@ -1,0 +1,19 @@
+{{ include('head') }}
+
+<storage>
+    <label>Clipboard<icon></icon></label>
+    <input placeholder='Find...'>
+    <list></list>
+    <edit contenteditable='true'></edit>
+</storage>
+
+<menu>
+    <option id='back' class='waiting' draggable='false' link='index'></option>
+    <option id='delete' draggable='false'></option>
+    <option id='save' draggable='false'></option>
+    <option id='two' :| if (localStorage.selectedClipboardIndex === '2') { |: class='active' :| } |: draggable='false'></option>
+    <option id='one' :| if (localStorage.selectedClipboardIndex === '1') { |: class='active' :| } |: draggable='false'></option>
+    <option id='all' :| if (localStorage.selectedClipboardIndex === 'all') { |: class='active' :| } |: draggable='false'></option>
+</menu>
+
+{{ include('foot') }}

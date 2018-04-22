@@ -1,0 +1,16 @@
+{{ include('head') }}
+
+<cron>
+    <label>Scheduled Tasks<icon></icon></label>
+    <input placeholder='Find...'>
+    <list></list>
+    <edit></edit>
+</cron>
+
+<menu>
+    <option id='back' draggable='false' link='index'></option>
+    <option id='add' draggable='false'></option>
+    <option id='save' draggable='false'></option>
+</menu>
+
+{{ include('foot') }}
