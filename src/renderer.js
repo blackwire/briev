@@ -1,13 +1,13 @@
 const $ = require('jquery.js'),
-      compile = require('compile.js'),
-      electron = require('electron'),
-	  shortcut = electron.remote.globalShortcut;
+      compile = require('compile'),
+      { remote, ipcRenderer } = require('electron'),
+	  shortcut = remote.globalShortcut;
 
 $(document).ready(function()
 {
-    const storage = require('storage.js'),
-          cron = require('cron.js'),
-          automate = require('automate.js'),
+    const storage = require('storage'),
+          cron = require('cron'),
+          automate = require('automate'),
           view = $('view'),
           main = $('body');
 
@@ -64,15 +64,15 @@ $(document).ready(function()
         {
             case 'index':
                 // handle paste text and write to draggable file functionality
-                require('paste.js').init($('index'));
+                require('paste').init($('index'));
 
                 // handle drag file and copy contents to clipboard functionality
-                require('clip.js').init($('index'));
+                require('clip').init($('index'));
             break;
 
             case 'color':
                 // handle color (hex/rgb/hsl) conversions, selection, etc
-                require('color.js').init($('color'));
+                require('color').init($('color'));
             break;
 
             case 'storage':
@@ -87,7 +87,7 @@ $(document).ready(function()
 
             case 'entities':
                 // setup and attach all event handling for entities list
-                require('entities.js').init($('entities'));
+                require('entities').init($('entities'));
             break;
 
             case 'automate':
@@ -105,12 +105,22 @@ $(document).ready(function()
     let storageInterval = setInterval(function()
     { storage.save($('storage')); }, 2000);
 
+    // default to clipboad 1 when the application starts
+    storage.switch(1);
+    ipcRenderer.send('switch-clipboard-1');
+
     // handle clipboard switching
     shortcut.register('CommandOrControl+1', function()
-    { storage.switch(1); });
+    { storage.switch(1); ipcRenderer.send('switch-clipboard-1'); });
+
+    ipcRenderer.on('switch-clipboard-1', function()
+    { storage.switch(1); ipcRenderer.send('switch-clipboard-1'); });
 
     shortcut.register('CommandOrControl+2', function()
-    { storage.switch(2); });
+    { storage.switch(2); ipcRenderer.send('switch-clipboard-2'); });
+
+    ipcRenderer.on('switch-clipboard-2', function()
+    { storage.switch(2); ipcRenderer.send('switch-clipboard-2'); });
 
     // handle running of scheduled tasks
     let cronInterval = setInterval(function()

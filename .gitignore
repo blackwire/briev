@@ -1,0 +1,13 @@
+node_modules/*
+!node_modules/trae/
+!node_modules/automate/
+!node_modules/cron/
+!node_modules/compile/
+!node_modules/entities/
+!node_modules/paste/
+!node_modules/storage/
+!node_modules/highlight/
+!node_modules/clip/
+!node_modules/color/
+Briev-*/
+build/

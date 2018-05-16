@@ -1,16 +1,15 @@
-const electron = require('electron'),
-	  app = electron.app,
-      minu = require('minu.js'),
+const { app, Menu, BrowserWindow, globalShortcut } = require('electron'),
+	  minu = require('minu'),
+	  trae = require('trae'),
       path = require('path'),
-      url = require('url'),
-	  shortcut = electron.globalShortcut;
+      url = require('url');
 
 let wino;
 function create()
 {
 	if (process.platform === 'darwin')
 	{
-		wino = new electron.BrowserWindow(
+		wino = new BrowserWindow(
 	    {
 	        width: 500,
 	        minWidth: 400,
@@ -28,7 +27,7 @@ function create()
 
 	if (process.platform === 'win32')
 	{
-		wino = new electron.BrowserWindow(
+		wino = new BrowserWindow(
 	    {
 	        width: 500,
 	        minWidth: 400,
@@ -52,9 +51,13 @@ function create()
     }));
 
     wino.on('closed', function()
-    { wino = null });
+    {
+		trae.destroy();
+		wino = null;
+	});
 
 	minu.main();
+	trae.init(minu, wino);
 }
 
 // startup the main window when application has started
@@ -62,19 +65,14 @@ app.on('ready', create);
 
 // clear all global shortcuts on exit
 app.on('will-quit', function()
-{ shortcut.unregisterAll(); });
+{ globalShortcut.unregisterAll(); });
 
 // exit application when all windows are closed
 app.on('window-all-closed', function()
-{
-    // on mac leave icon in the tray until explicitly closed
-    if (process.platform !== 'darwin')
-    { app.quit(); }
-});
+{ app.quit(); });
 
 app.on('activate', function()
 {
     // on mac if no windows are up then start the main window again
-    if (wino === null)
-    { create(); }
+    if (wino === null) create();
 });
