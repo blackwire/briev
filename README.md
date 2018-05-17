@@ -17,7 +17,7 @@ A basic set of tools that get used in my trade day in and day out. Color picker/
 * **Hold key:** keyboard.holdKey(key)
 * **Release key:** keyboard.releaseKey(key)
 * **Tap key:** keyboard.tapKey(key)
-* **Type:** keyboard.releaseKey(string)
+* **Type:** keyboard.type(string)
 
 #### Sleep Behaviors:
 * **Second:** sleep.second(seconds-to-sleep)
