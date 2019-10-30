@@ -27,7 +27,7 @@
     "entities": "1.0.0"
   },
   "devDependencies": {
-    "electron": "1.8.4",
+    "electron": "7.0.0",
     "electron-packager": "^12.0.1",
     "prebuild-install": "^4.0.0"
   }
